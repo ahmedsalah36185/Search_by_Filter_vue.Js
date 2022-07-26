@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset='UTF-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="dist\css/main.css">
+    <title>SearchBar</title>
+
+</head>
+
+<body>
+    <div class="block">
+        <div class="io">
+            <h1 id="label_1">Search-Project ( )</h1>
+            <h1>Using Vue JS</h1><br><br>
+            <h1 class="forme">All rights reserved.&copy; ahmed salah&#128514;</h1>
+        </div>
+        <div id="blockin" class="blockin">
+            <h1 v-if="Find_Country">You Are From "{{Find_Country}}"</h1>
+            <h1 v-else> Where Are You From ? </h1>
+            <label title="search here" for="search">Search For Your Country</label>
+            <input title="search here" name="search" type="text" v-model="Find_Country">
+            <ul>
+                <li v-for="country in FilterCountries">{{country}}</li>
+            </ul>
+
+        </div>
+    </div>
+    <script src="dist/vjs/vue.js"></script>
+    <script>
+        var test = new Vue({
+            el: '#blockin',
+            data: {
+                Find_Country: '',
+                Countries: [
+                    'Palestine',
+                    'egypt',
+                    'USA',
+                    'Russia',
+                    'England',
+                    'India',
+                    'UAE',
+                    'Saudi Arabia',
+                    'Libya',
+                    'Senegal',
+                    'qatar',
+                    'Sudan',
+                    'almaghrib',
+                    'Sweden',
+                    'Pennsylvania',
+                    'Japan',
+                    'Iraq',
+                    'France',
+                    'Iran',
+                    'Brazil',
+                    'China',
+                ],
+            },
+            computed: {
+                FilterCountries: function () {
+                    var filter_R = new RegExp(this.Find_Country, 'i');
+                    return this.Countries.filter(function (el) {
+                        return el.match(filter_R);
+                    });
+                },
+            },
+        })
+    </script>
+</body>
+
+
+
+
+</html>
